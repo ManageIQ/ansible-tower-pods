@@ -1,0 +1,5 @@
+[ansible-tower]
+name=Ansible Tower - $basearch
+baseurl=http://releases.ansible.com/ansible-tower/rpm/epel-7-$basearch/
+enabled=1
+gpgcheck=0

@@ -1,0 +1,10 @@
+[Unit]
+Description=Initialize Ansible Tower
+After=network.service
+Before=supervisord.service
+[Service]
+Type=oneshot
+ExecStart=/bin/initialize-tower.sh
+ExecStartPost=/usr/bin/systemctl disable initialize-tower
+[Install]
+WantedBy=multi-user.target

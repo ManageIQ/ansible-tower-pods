@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: tower-pv02
+spec:
+  capacity:
+    storage: 15Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /var/lib/minishift/ansible-tower-database
+  persistentVolumeReclaimPolicy: Recycle

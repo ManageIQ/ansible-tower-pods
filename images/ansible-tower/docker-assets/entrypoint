@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Wait for postgres to be up
+
+NCAT="$(which ncat)"                                                                  
+
+echo "== Checking ${DATABASE_SERVICE_NAME}:5432 status =="
+
+[[ ! -x ${NCAT} ]] && echo "ERROR: Could not find ncat executable, aborting.." && exit 1
+
+while true; do
+  ${NCAT} ${DATABASE_SERVICE_NAME} 5432 < /dev/null && break                                
+  sleep 5                                                                             
+done                                                                                  
+echo "${DATABASE_SERVICE_NAME}:5432 - accepting connections"                                
+
+exec "$@"
