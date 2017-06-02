@@ -13,7 +13,7 @@ admin_password='${ADMIN_PASSWORD}'
 pg_host='${DATABASE_SERVICE_NAME}'
 pg_port='5432'
 
-pg_database='${DATABASE_NAME}'
+pg_database='${POSTGRESQL_DATABASE}'
 pg_username='${POSTGRESQL_USER}'
 pg_password='${POSTGRESQL_PASSWORD}'
 

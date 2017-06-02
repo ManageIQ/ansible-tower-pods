@@ -133,9 +133,6 @@ objects:
               name: "DATABASE_SERVICE_NAME"
               value: "${DATABASE_SERVICE_NAME}"
             -
-              name: "DATABASE_NAME"
-              value: "${DATABASE_NAME}"
-            -
               name: "POSTGRESQL_USER"
               value: "${DATABASE_USER}"
             -
