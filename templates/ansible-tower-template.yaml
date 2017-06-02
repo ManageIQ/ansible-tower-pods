@@ -84,6 +84,8 @@ objects:
     annotations:
       description: "Defines how to deploy the Ansible Tower appliance"
   spec:
+    strategy:
+      type: "Recreate"
     serviceName: "${NAME}"
     replicas: "${APPLICATION_REPLICA_COUNT}"
     template:
@@ -112,6 +114,8 @@ objects:
             protocol: TCP
           - containerPort: 443
             protocol: TCP
+          securityContext:
+            privileged: true
           env:
             -
               name: "ADMIN_PASSWORD"
@@ -369,7 +373,7 @@ parameters:
     name: "APPLICATION_IMG_NAME"
     displayName: "Application Image Name"
     description: "This is the Application image name requested to deploy."
-    value: "docker.io/ansible/ansible-tower"
+    value: "docker.io/carbonin/ansible-tower"
   -
     name: "APPLICATION_IMG_TAG"
     displayName: "Application Image Tag"

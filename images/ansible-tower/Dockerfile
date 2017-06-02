@@ -1,4 +1,4 @@
-FROM manageiq/ruby
+FROM centos:7
 MAINTAINER ManageIQ https://github.com/ManageIQ/manageiq-appliance-build
 
 ## Set build ARGs
@@ -29,7 +29,12 @@ COPY docker-assets/ansible-tower.repo /etc/yum.repos.d
 ## Install EPEL repo, yum necessary packages for the build without docs, clean all caches
 RUN yum -y install epel-release  \
                    https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-3.noarch.rpm && \
-    yum -y install --setopt=tsflags=nodocs ansible-tower-server ansible-tower-setup ansible-tower-ui nmap-ncat \
+
+    yum -y install --setopt=tsflags=nodocs ansible-tower-server \
+                                           ansible-tower-setup \
+                                           ansible-tower-ui \
+                                           nmap-ncat \
+                                           iproute && \
     yum clean all
 
 ## Expose required container ports

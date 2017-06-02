@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Print the inventory file
 cat << EOF > /inventory
 [tower]
@@ -24,4 +26,4 @@ rabbitmq_use_long_name=false
 rabbitmq_enable_manager=false
 EOF
 
-ansible-tower-setup -e minimum_var_space=0 --inventory=/inventory
+ansible-tower-setup -e minimum_var_space=0 -i /inventory
