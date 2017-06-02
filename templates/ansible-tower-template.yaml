@@ -18,6 +18,9 @@ objects:
     name: "${NAME}-secrets"
   stringData:
     pg-password: "${DATABASE_PASSWORD}"
+    rabbit-password: "${RABBITMQ_PASSWORD}"
+    secret-key: "${SECRET_KEY}"
+    admin-password: "${ADMIN_PASSWORD}"
 - apiVersion: v1
   kind: Service
   metadata:
@@ -119,16 +122,25 @@ objects:
           env:
             -
               name: "ADMIN_PASSWORD"
-              value: "${ADMIN_PASSWORD}"
+              valueFrom:
+                secretKeyRef:
+                  name: "${NAME}-secrets"
+                  key: "admin-password"
             -
               name: "RABBITMQ_USER_NAME"
               value: "${RABBITMQ_USER_NAME}"
             -
               name: "RABBITMQ_PASSWORD"
-              value: "${RABBITMQ_PASSWORD}"
+              valueFrom:
+                secretKeyRef:
+                  name: "${NAME}-secrets"
+                  key: "rabbit-password"
             -
               name: "SECRET_KEY"
-              value: "${SECRET_KEY}"
+              valueFrom:
+                secretKeyRef:
+                  name: "${NAME}-secrets"
+                  key: "secret-key"
             -
               name: "DATABASE_SERVICE_NAME"
               value: "${DATABASE_SERVICE_NAME}"
