@@ -56,5 +56,7 @@ COPY docker-assets/initialize-tower.service /usr/lib/systemd/system
 
 RUN systemctl enable initialize-tower
 
+VOLUME [ "/sys/fs/cgroup" ]
+
 ENTRYPOINT ["entrypoint"]
 CMD [ "/usr/sbin/init" ]
