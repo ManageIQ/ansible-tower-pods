@@ -11,7 +11,7 @@ objects:
 - apiVersion: v1
   kind: ServiceAccount
   metadata:
-    name: ansible-tower-sysadmin
+    name: ansible-tower-privileged
 - apiVersion: v1
   kind: Secret
   metadata:
@@ -117,6 +117,8 @@ objects:
             protocol: TCP
           - containerPort: 443
             protocol: TCP
+          securityContext:
+            privileged: true
           env:
             -
               name: "ADMIN_PASSWORD"
@@ -160,8 +162,8 @@ objects:
               cpu: "${APPLICATION_CPU_REQ}"
             limits:
               memory: "${APPLICATION_MEM_LIMIT}"
-        serviceAccount: ansible-tower-sysadmin
-        serviceAccountName: ansible-tower-sysadmin
+        serviceAccount: ansible-tower-privileged
+        serviceAccountName: ansible-tower-privileged
 - apiVersion: v1
   kind: "Service"
   metadata:
