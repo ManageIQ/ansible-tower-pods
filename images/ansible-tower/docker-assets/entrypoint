@@ -3,6 +3,9 @@
 # dump docker container run variable into a file for systemd to load
 env > /container.env.vars
 
+echo "== Writing SECRET_KEY =="
+echo ${ANSIBLE_SECRET_KEY} > /etc/tower/SECRET_KEY
+
 # Wait for postgres to be up
 echo "== Checking ${DATABASE_SERVICE_NAME}:5432 status =="
 
